@@ -1,0 +1,453 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+   font-family: 'Poppins';
+}
+
+body{
+    background-image: linear-gradient(180deg, rgb(180, 180, 180), black);
+    position: absolute;
+    opacity: 1;
+    text-align: center;
+    font-family: 'Poppins';
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    background-size: cover;
+    margin: 0 0 0 0;
+}
+
+/* BARRE DE NAVIGATION  */
+
+.navmenu{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 150px;
+    background-color: gainsboro;
+    background-size: cover;
+    position: absolute;
+    backdrop-filter: 0.8;
+    padding: 0;
+
+}
+
+.title-logo{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+.title-logo h1{
+    font-size: 20px;
+    font-weight: 700;
+    color: #000000;
+}
+
+.title-logo img{
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    border: solid 2px;
+    border-radius: 100%;
+}
+
+nav{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-align: center;
+    color: #000;
+}
+nav ul{
+    display: flex;
+    gap: 100px;
+    margin: 10px 300px 0 0;
+}
+
+nav ul li {
+    font-weight: 700;
+    color: #000000;
+    list-style: none;
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    padding: .5rem;
+    position: relative;
+    cursor: pointer;
+}
+
+nav ul li a::after {
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #000;
+    border-radius: 5px;
+    transform: scaleX(0);
+    transition: all 0.6s ease;
+}
+
+nav ul li a:hover::after{
+    transform: scaleX(1);
+}
+
+nav button{
+    width: 100px;
+    height: 30px;
+    font-weight: 700;
+    background: #ffffff;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: #000;
+    display: inline-flex;
+}
+
+nav button a{
+    text-decoration: none;
+    color: #000;
+    padding: .5rem;
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+}
+
+/* FIN BARRE DE NAVIGATION  */
+
+.top-content{
+    text-align: center;
+}
+
+.logo{
+    margin: 0 0 0 0;
+}
+
+.first-title{
+    
+}
+
+.first-title-texts{
+
+    margin: -50px 0 0 0;
+}
+
+.first-title h1{
+    font-size: 50px;
+    text-decoration:wavy;
+    
+}
+
+.first-title h2{
+    font-size: 15px;
+    margin-top: -30px;
+    text-decoration: overline;
+    margin-bottom: 40px;
+}
+
+.first-title .first-title-texts p{
+    width: 1000px;
+    font-size: 14px;
+    padding: 20px;
+}
+
+.start-button{
+    text-align: center;
+    height: 50px;
+    width: 300px;
+    background-color: rgba(15, 7, 7, 0.5);
+    font-size: 20px; 
+    border-radius: 50px;
+    margin: 70px 0 100px 485px;
+    padding: 20px 0 0 0;
+    cursor: pointer;
+    border: groove;
+}
+
+.start-button:hover{
+    transform: scale(1.2);
+    transition: all 0.6s ease;
+    opacity:0.75;
+}
+
+.start-button::after{
+    transform: scale(-1.2);
+    transition: all 0,6s ease;
+}
+
+.start-button:hover::after{
+    transform: scale(0);
+    transition: all 0,6s ease;
+}
+
+.start-button a{
+    text-decoration: none;
+    color: black;
+}
+
+.middle-content{
+
+}
+
+.mid-title-1{
+    padding: 5px 0 15px 0;
+}
+
+.services{
+    display: block;
+    gap: 40px;
+    transition: all;
+    overflow: hidden;
+}
+
+.first-line{
+    display: inline-flex;
+}
+
+.first-line .service-description{
+    
+}
+
+.second-line{
+    display: inline-flex;
+}
+
+.services-container{
+    height: 270px;
+    width: 350px;
+    background-color: aliceblue;
+    margin: 15px 15px 30px 15px;
+    border-radius: 25px 25px 25px 25px;
+}
+
+.service-title{
+    height: 60px;
+    padding: 15px 20px 15px 20px ;
+    background-color: antiquewhite;
+    text-decoration: solid 2px;
+    font-size: 18px;
+    border-radius: 25px 25px 0 0;
+}
+
+.service-description{
+    padding: 15px 25px 15px 25px;
+    font-size: 14px;
+}
+
+.mid-title-2{
+    padding: 15px 0 15px 0;
+    margin: 20px 0 20px 0;
+}
+
+.our-team{
+    display: inline-flex;
+    transition: all 0.8s;
+    gap: 20px;
+}
+
+.personal-info{
+    height: 500px;
+    width: 350px;
+    background-color: aliceblue;
+    margin: 10px 15px 30px 15px;
+    border-radius: 25px 25px 25px 25px;
+}
+
+.my-picture{
+    height: 300px; 
+    background-color: antiquewhite;
+    border-radius: 25px 25px 0 0;
+    background-size: cover;
+    justify-content: center;
+}
+
+.my-name{
+    margin: 10px 0 0 0 ;
+}
+
+.my-statut{
+    padding: 10px 0 0 0 ;
+    text-decoration: none;
+}
+
+.personal-info img{
+    margin: 20px 0 0 0 ;
+    border-radius: 50% ;
+}
+
+.personal-info:hover{
+    transform: scale(1.1);
+    transition: 0.6s ease-in-out;
+}
+
+.mid-title-3{
+    padding: 15px 0 15px 0;
+    margin: 20px 0 20px 0;
+}
+
+.comments{
+    position: relative;
+    height: 75%;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+}
+
+
+.comment-container{
+    height: 320px;
+    width: 350px;
+    background-color: aliceblue;
+    margin: 10px 5px 50px 5px;
+    border-radius: 25px;
+}
+
+.commentator-info{
+    width: 350px;
+    height: 100px; 
+    background-color: antiquewhite;
+    border-radius: 25px 25px 0 0;
+    background-size: cover;
+    justify-content: center;
+    display: inline-flex;
+    gap: 15px;
+}
+
+.commentator-picture img{
+    margin: 20px 0 0 0 ;
+    border-radius: 50% ;
+    height: 40px;
+    width: 40px;
+}
+
+.commentator-name{
+    margin: 18px 0 0 0;
+}
+
+.commentator-comment{
+    margin: 30px 25px 0 25px;
+}
+
+.footer-basic {
+    padding:40px 0;
+    background-color:#ffffff;
+    color:#4b4c4d;
+  }
+  
+  .footer-basic ul {
+    padding:0;
+    list-style:none;
+    text-align:center;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:0;
+    display: inline-flex;
+  }
+  
+  .footer-basic li {
+    padding:0 10px;
+  }
+  
+  .footer-basic ul a {
+    color:inherit;
+    text-decoration:none;
+    opacity:0.8;
+  }
+  
+  .footer-basic ul a:hover {
+    opacity:1;
+  }
+  
+  .footer-basic .social {
+    text-align:center;
+    padding-bottom:25px;
+  }
+  
+  .footer-basic .social > a {
+    font-size:24px;
+    width:40px;
+    height:40px;
+    line-height:40px;
+    display:inline-block;
+    text-align:center;
+    border-radius:50%;
+    border:1px solid #ccc;
+    margin:0 8px;
+    color:inherit;
+    opacity:0.75;
+    cursor: pointer;
+  }
+  
+  .footer-basic .social > a:hover {
+    opacity:0.9;
+  }
+  
+  .footer-basic .copyright {
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    color:#000000;
+    margin-bottom:0;
+  }
+
+
+
+  /* Code CSS pour le slider */
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .swiper-slide .swiper-slide-next{
+    width: 50px;
+  }
+
+  .swiper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Responsive */ 
+@media (max-widht : 800px){
+    body{
+        width: auto;
+        padding: 20px;
+    }
+
+    .navmenu{
+        width: auto;
+        gap: 60px;
+        font-size: 8px;
+    }
+
+    .navmenu .title-logo h1{
+        font-size: 8px;
+    }
+
+    .first-title p{
+        margin: 0 40px;
+        font-size: small;
+    }
+}

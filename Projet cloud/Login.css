@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: 'Poppins';
+}
+
+body{
+    height: auto;
+    width: auto;
+    text-align: center;
+    align-items: center;
+    background-image: white;
+    backdrop-filter: 0.8;
+}
+.container{
+    height: auto;
+    width: auto;
+    padding: 35px 35px 35px 10px;
+    border: solid 2px;
+    border-radius: 25px;
+    margin: 50px 400px 0 400px;
+    background-color: gainsboro;
+    backdrop-filter: 0.8;
+}
+
+.nom{
+    margin: 0 0 30px 0;
+}
+
+.nom label{
+    margin: 0 0 0 -40px ;
+    text-decoration: underline;
+}
+
+.nom input{
+    margin: 0 0 0 20px;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.prenom{
+  margin: -20px 0 10px 0;
+}
+
+.prenom label{
+  text-decoration: underline;
+  margin: 0 0 0 -60px;
+}
+
+.prenom input{
+  border-radius: 10px;
+    padding-left: 10px;
+    margin: 0 0 0 20px;
+}
+
+.email{
+  margin: 0 0 10px 0;
+}
+
+.email label{
+  text-decoration: underline;
+  margin: 0 0 0 -25px;
+}
+
+.email input{
+  border-radius: 10px;
+  padding-left: 10px;
+  margin: 0 0 0 20px;
+}
+
+.mdp{
+    margin: 0 0 30px 0;
+}
+
+.mdp label{
+    margin: 0 0 0 -80px;
+    text-decoration: underline;
+}
+
+.mdp input{
+    margin: 0 0 0 20px;
+    border-radius: 10px;
+    padding-left: 10px;
+    
+}
+
+input[type="submit"]{
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 0 0 20px 0;
+}
+
+.stay-connect{
+    margin: 15px 0 0 100px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    font-size: smaller;
+}
+
+.create-account{
+   text-decoration: wavy;
+}
+
+.create-account a{
+  cursor: pointer;
+}
+  
+  footer ul {
+    padding:0;
+    list-style:none;
+    text-align:center;
+    font-size:10px;
+    line-height:1.6;
+    margin-bottom:0;
+    display: inline-flex;
+  }
+  
+  footer li {
+    padding:0 10px;
+  }
+  
+  footer ul a {
+    color:inherit;
+    text-decoration:none;
+    opacity:0.8;
+  }
+  
+  footer ul a:hover {
+    opacity:1;
+  }
+  
+  .footer-basic .copyright {
+    margin-top:15px;
+    text-align:center;
+    font-size:13px;
+    color:#000000;
+    margin-bottom:0;
+  }
