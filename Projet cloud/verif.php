@@ -22,7 +22,7 @@ try {
     require __DIR__ . '/con.php';
 
     $statement = $db->prepare(
-        'SELECT id, username, password FROM users WHERE username = :username LIMIT 1'
+        'SELECT username, password FROM users WHERE username = :username LIMIT 1'
     );
     $statement->execute(['username' => $username]);
     $user = $statement->fetch();
@@ -41,7 +41,7 @@ if (!$user || !password_verify($password, $user['password'])) {
 
 session_regenerate_id(true);
 $_SESSION['auth'] = true;
-$_SESSION['user_id'] = (int) $user['id'];
+$_SESSION['user_id'] = $user['username'];
 $_SESSION['username'] = $user['username'];
 unset($_SESSION['csrf_token'], $_SESSION['erreur']);
 
