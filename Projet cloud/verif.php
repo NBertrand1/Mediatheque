@@ -1,53 +1,49 @@
 <?php
+declare(strict_types=1);
 
-include("con.php");
+require_once __DIR__ . '/security.php';
+start_secure_session();
 
-session_start();
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !verify_csrf_token()) {
+    http_response_code(400);
+    exit('Requête invalide. Veuillez réessayer depuis le formulaire.');
+}
 
-// Définir les variables de connexion à la base de données
-$host = "localhost";
-$username = "root";
-$password = "root";
-$database = "projet_cloud";
+$username = trim((string) ($_POST['username'] ?? ''));
+$password = $_POST['password'] ?? '';
 
-// Connexion à la base de données
-$db = new PDO("mysql:host=$host;dbname=$database", $username, $password);
-
-// Récuperation des informations du formulaire
-$username = $_POST['username'];
-$password = $_POST['password'];
-
-// Requête SQL pour vérifier l'utilisateur
-$sql = "SELECT * FROM users WHERE username = :username";
-$stmt = $db->prepare($sql);
-$stmt->bindParam(':username', $username);
-$stmt->execute();
-
-// Vérifier si l'utilisateur existe
-$user = $stmt->fetch();
-
-if ($user) {
-    // Récupération du hachage du mot de passe
-    $hashedPassword = $user['password'];
-
-    // Comparaison du mot de passe saisi avec le hachage
-    if (password_verify($password, $hashedPassword)) {
-        // Authentification réussie
-        $_SESSION['auth'] = true;
-        $_SESSION['username'] = $username;
-        header('Location: accueil.php');
-        exit;
-    } else {
-        // Echec de l'authentification : mot de passe incorrect
-        $_SESSION['erreur'] = "Mot de passe incorrect.";
-        header('Location: index.html');
-        exit;
-    }
-} else {
-    // Erreur d'authentification : utilisateur non trouvé
-    $_SESSION['erreur'] = "Nom d'utilisateur incorrect.";
-    header('Location: index.html');
+if ($username === '' || !is_string($password) || $password === '') {
+    $_SESSION['erreur'] = 'Veuillez renseigner vos identifiants.';
+    header('Location: connexion.php');
     exit;
 }
 
-?>
+try {
+    require __DIR__ . '/con.php';
+
+    $statement = $db->prepare(
+        'SELECT id, username, password FROM users WHERE username = :username LIMIT 1'
+    );
+    $statement->execute(['username' => $username]);
+    $user = $statement->fetch();
+} catch (Throwable $exception) {
+    error_log('Mediatheque login failed: ' . $exception->getMessage());
+    $_SESSION['erreur'] = 'Connexion temporairement indisponible.';
+    header('Location: connexion.php');
+    exit;
+}
+
+if (!$user || !password_verify($password, $user['password'])) {
+    $_SESSION['erreur'] = 'Identifiants invalides.';
+    header('Location: connexion.php');
+    exit;
+}
+
+session_regenerate_id(true);
+$_SESSION['auth'] = true;
+$_SESSION['user_id'] = (int) $user['id'];
+$_SESSION['username'] = $user['username'];
+unset($_SESSION['csrf_token'], $_SESSION['erreur']);
+
+header('Location: accueil.php');
+exit;
