@@ -1,5 +1,8 @@
 <?php
-    session_start();
+declare(strict_types=1);
+
+require_once __DIR__ . '/security.php';
+require_authenticated_user();
 ?>
 
 <!DOCTYPE html>
