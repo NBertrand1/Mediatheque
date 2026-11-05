@@ -1,0 +1,31 @@
+name: PHP security checks
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  php-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Lint all PHP files
+        run: |
+          find "Projet cloud" -type f -name "*.php" -print0 | xargs -0 -n1 php -l
+
+      - name: Check for committed development database credentials
+        run: |
+          if grep -RInE '(\"root\"|\x27root\x27)' "Projet cloud" --include="*.php"; then
+            echo "Potential hardcoded development database credentials found."
+            exit 1
+          fi
