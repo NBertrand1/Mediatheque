@@ -14,7 +14,7 @@ Mediatheque is a web application designed to organize taught subjects and their 
 - Organisation des documents PDF par matière / PDF materials organized by subject
 - Affichage intégré des PDF dans le navigateur / Embedded PDF viewing
 - Pages de connexion et d'inscription / Login and registration pages
-- Gestion de session PHP / PHP session handling
+- Sessions PHP sécurisées, protection CSRF des formulaires et contrôle de la page d'accueil / Hardened PHP sessions, form CSRF protection and protected home page
 
 ## Technologies identifiées | Verified technologies
 
@@ -30,18 +30,33 @@ Le code applicatif se trouve dans le dossier `Projet cloud/`. Les supports PDF s
 
 Application source is located in `Projet cloud/`. PDF materials are organized by subject under `Projet cloud/Livres/`.
 
-## Installation et configuration | Setup and configuration
+## Configuration | Configuration
 
-Le projet dépend d'un serveur PHP et d'une base MySQL. La configuration de connexion à la base se trouve actuellement dans `Projet cloud/con.php` et des identifiants de développement sont également présents dans certains scripts.
+La connexion MySQL utilise désormais les variables d'environnement suivantes, à définir dans l'environnement du serveur PHP :
 
-The project requires a PHP server and a MySQL database. Database connection settings are currently stored in `Projet cloud/con.php`, and development credentials also appear in some scripts.
+The MySQL connection now reads the following environment variables, which must be configured in the PHP hosting environment:
 
-**Important security note:** before deploying or publishing this application as a live service, move database credentials to environment variables or a configuration file outside the web root, remove duplicated credentials, avoid displaying raw database errors, and review session handling and access control. Do not reuse the current development credentials in production.
+- `DB_HOST` (default: `localhost`)
+- `DB_NAME` (default: `projet_cloud`)
+- `DB_USER` (required)
+- `DB_PASS` (required)
 
-**Note de sécurité :** avant toute mise en production, déplacer les identifiants de base de données vers des variables d'environnement ou une configuration hors du répertoire public, supprimer les identifiants dupliqués, ne pas afficher les erreurs SQL brutes et revoir la gestion des sessions et des autorisations. Ne pas réutiliser les identifiants de développement actuels en production.
+Un exemple non secret est fourni dans `.env.example`. Ce fichier est un modèle documentaire : le projet ne charge pas automatiquement un fichier `.env`. Configurez les variables dans votre hébergement ou votre serveur web. Utilisez un compte MySQL dédié avec les privilèges minimum nécessaires.
 
-## Current status | État actuel
+A non-secret template is provided in `.env.example`. It is documentation only: the application does not automatically load a `.env` file. Configure these variables in your hosting or web-server environment. Use a dedicated MySQL account with the minimum required privileges.
 
-The repository contains a PHP/MySQL prototype with course categories, PDF resources, and basic account flows. It still requires a security and deployment review before being considered production-ready.
+## Sécurité et limites | Security and limitations
 
-Le dépôt contient un prototype PHP/MySQL avec des catégories de cours, des ressources PDF et des parcours de compte basiques. Une revue de sécurité et de déploiement reste nécessaire avant toute mise en production.
+Les modifications de cette branche ajoutent des cookies de session HttpOnly/SameSite, le mode strict des sessions, la régénération de l'identifiant après connexion, la destruction complète de session à la déconnexion, des jetons CSRF sur les formulaires de connexion et d'inscription, la validation des entrées et des messages d'erreur génériques côté utilisateur. Les erreurs techniques sont envoyées dans les journaux PHP, pas dans la page.
+
+This branch adds HttpOnly/SameSite session cookies, strict session mode, session ID rotation after login, complete logout cleanup, CSRF tokens on login and registration forms, input validation, and generic user-facing errors. Technical details are written to PHP logs rather than rendered in the browser.
+
+**Avant mise en production / Before production:** configurez les variables d'environnement, utilisez HTTPS, vérifiez la structure réelle de la table `users`, ajoutez des limites de tentatives de connexion, revoyez les contrôles d'accès sur chaque page qui doit être privée, et effectuez des tests d'intégration avec une base de test. Le dépôt ne fournit pas de schéma SQL ni de configuration de déploiement permettant de valider ces points automatiquement.
+
+Configure environment variables, enforce HTTPS, verify the actual `users` table schema, add login rate limiting, review access control on every page that should be private, and run integration tests against a test database. The repository does not currently provide a SQL schema or deployment configuration to verify these items automatically.
+
+## État actuel | Current status
+
+Le dépôt contient un prototype PHP/MySQL de bibliothèque de cours. Les changements de sécurité doivent être relus et testés avec la base de données réelle avant d'être déployés.
+
+The repository contains a PHP/MySQL course-library prototype. Security changes must be reviewed and tested against the actual database before deployment.
