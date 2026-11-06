@@ -1,3 +1,10 @@
+<?php
+declare(strict_types=1);
+
+require_once __DIR__ . '/security.php';
+require_authenticated_user();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,16 +22,16 @@
     <div class="books-container">
         <div class="first-row">
             <div class="book">
-                <embed  src="Livres/Cloud/cloud-1.pdf" width="500" height="300" type="application/pdf">
+                <embed  src="document.php?file=Cloud%2Fcloud-1.pdf" width="500" height="300" type="application/pdf">
             </div>
             <div class="book">
-                <embed src="Livres/Cloud/cloud-2.pdf" width="500" height="300" type="application/pdf">
+                <embed src="document.php?file=Cloud%2Fcloud-2.pdf" width="500" height="300" type="application/pdf">
             </div>
         </div>
 
         <div class="second-row">
             <div class="book">
-                <embed src="Livres/Cloud/cloud-3.pdf" width="500" height="300" type="application/pdf">
+                <embed src="document.php?file=Cloud%2Fcloud-3.pdf" width="500" height="300" type="application/pdf">
             </div>
         </div>
     </div>

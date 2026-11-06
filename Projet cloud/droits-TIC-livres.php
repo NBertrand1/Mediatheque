@@ -1,3 +1,10 @@
+<?php
+declare(strict_types=1);
+
+require_once __DIR__ . '/security.php';
+require_authenticated_user();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,19 +22,19 @@
     <div class="books-container">
         <div class="first-row">
             <div class="book">
-                <embed src="Livres/Physique/module-1.pdf" width="500" height="300" type="application/pdf">
+                <embed src="document.php?file=Physique%2Fmodule-1.pdf" width="500" height="300" type="application/pdf">
             </div>
             <div class="book">
-                <embed src="Livres/Physique/module-2.pdf" width="500" height="300" type="application/pdf">
+                <embed src="document.php?file=Physique%2Fmodule-2.pdf" width="500" height="300" type="application/pdf">
             </div>
         </div>
 
         <div class="second-row">
             <div class="book">
-                <embed src="Livres/Physique/module-3.pdf" width="500" height="300" type="application/pdf">
+                <embed src="document.php?file=Physique%2Fmodule-3.pdf" width="500" height="300" type="application/pdf">
             </div>
             <div class="book">
-                <embed src="Livres/Physique/module-4.pdf" width="500" height="300" type="application/pdf">
+                <embed src="document.php?file=Physique%2Fmodule-4.pdf" width="500" height="300" type="application/pdf">
             </div>
         </div>
     </div>

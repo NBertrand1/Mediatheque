@@ -1,3 +1,10 @@
+<?php
+declare(strict_types=1);
+
+require_once __DIR__ . '/security.php';
+require_authenticated_user();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,16 +22,16 @@
     <div class="books-container">
         <div class="first-row">
             <div class="book">
-                <embed src="Livres/Linux/linux-4.pdf" width="500" height="300" type="application/pdf">
+                <embed src="document.php?file=Linux%2Flinux-4.pdf" width="500" height="300" type="application/pdf">
             </div>
             <div class="book">
-                <embed src="Livres/Linux/linux-2.pdf" width="500" height="300" type="application/pdf">
+                <embed src="document.php?file=Linux%2Flinux-2.pdf" width="500" height="300" type="application/pdf">
             </div>
         </div>
 
         <div class="second-row">
             <div class="book">
-                <embed src="Livres/Linux/linux-3.pdf" width="500" height="300" type="application/pdf">
+                <embed src="document.php?file=Linux%2Flinux-3.pdf" width="500" height="300" type="application/pdf">
             </div>
         </div>
     </div>

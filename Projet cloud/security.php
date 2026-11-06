@@ -57,3 +57,30 @@ function require_authenticated_user(): void
         exit;
     }
 }
+/**
+ * Resolve a PDF path strictly inside the library directory.
+ * Returns null for missing files, non-PDF files, and traversal/symlink escapes.
+ */
+function resolve_library_pdf(string $relativePath, string $libraryDirectory): ?string
+{
+    if ($relativePath === '' || str_contains($relativePath, "\0")) {
+        return null;
+    }
+
+    $baseDirectory = realpath($libraryDirectory);
+    if ($baseDirectory === false) {
+        return null;
+    }
+
+    $candidate = realpath($baseDirectory . DIRECTORY_SEPARATOR
+        . str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $relativePath));
+
+    if ($candidate === false
+        || !str_starts_with($candidate, $baseDirectory . DIRECTORY_SEPARATOR)
+        || !is_file($candidate)
+        || strtolower(pathinfo($candidate, PATHINFO_EXTENSION)) !== 'pdf') {
+        return null;
+    }
+
+    return $candidate;
+}
