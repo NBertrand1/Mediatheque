@@ -67,3 +67,10 @@ The repository contains a PHP/MySQL course-library prototype. Security changes m
 Category, contact, and subject pages require an authenticated session. PDF files are embedded through `document.php`, which validates the requested path and serves only PDF files resolved inside `Projet cloud/Livres/`. Apache deployments use the `.htaccess` rule in that directory to block direct file URLs. If the host uses Nginx or another server, configure an equivalent deny rule for direct requests to `/Livres/`; the repository cannot enforce that server-level rule on every hosting platform.
 
 The path resolver has CLI regression tests for valid PDFs, missing files, non-PDF files, and path traversal. Database integration, the live `users` schema, login rate limiting, and hosting-specific access rules still require environment-level verification. No deployment is included.
+
+
+## Projet de référence et continuité | Canonical project
+
+Le dépôt **Mediatheque** est désormais le dépôt de référence pour le développement de l'ancienne bibliothèque numérique de cours. L'ancien prototype **Ma-biblio** est conservé comme référence historique et source éventuelle d'éléments graphiques ou de contenu ; il ne doit pas devenir une seconde application indépendante. Les évolutions fonctionnelles, la sécurité, les données et les futurs écrans doivent être conçus et intégrés dans ce dépôt Mediatheque, après revue de l'architecture et du schéma réel de la base de données.
+
+**Mediatheque is the canonical repository** for the former course digital-library prototype. **Ma-biblio** is retained as a historical reference and a possible source of visual/content assets, not as a separate application to rebuild. Future features, security work, data structures, and screens should be developed in this Mediatheque repository after reviewing the actual architecture and database schema.
