@@ -23,6 +23,9 @@ jobs:
         run: |
           find "Projet cloud" -type f -name "*.php" -print0 | xargs -0 -n1 php -l
 
+      - name: Run library path security tests
+        run: php "Projet cloud/tests/security-tests.php"
+
       - name: Check for committed development database credentials
         run: |
           if grep -RInE '(\"root\"|\x27root\x27)' "Projet cloud" --include="*.php"; then
