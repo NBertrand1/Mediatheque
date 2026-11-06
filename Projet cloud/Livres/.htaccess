@@ -1,0 +1,2 @@
+# PDF files are served through document.php after authentication (Apache 2.4+).
+Require all denied
