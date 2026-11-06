@@ -60,3 +60,10 @@ Configure environment variables, enforce HTTPS, verify the actual `users` table 
 Le dépôt contient un prototype PHP/MySQL de bibliothèque de cours. Les changements de sécurité doivent être relus et testés avec la base de données réelle avant d'être déployés.
 
 The repository contains a PHP/MySQL course-library prototype. Security changes must be reviewed and tested against the actual database before deployment.
+
+
+## Protected library resources
+
+Category, contact, and subject pages require an authenticated session. PDF files are embedded through `document.php`, which validates the requested path and serves only PDF files resolved inside `Projet cloud/Livres/`. Apache deployments use the `.htaccess` rule in that directory to block direct file URLs. If the host uses Nginx or another server, configure an equivalent deny rule for direct requests to `/Livres/`; the repository cannot enforce that server-level rule on every hosting platform.
+
+The path resolver has CLI regression tests for valid PDFs, missing files, non-PDF files, and path traversal. Database integration, the live `users` schema, login rate limiting, and hosting-specific access rules still require environment-level verification. No deployment is included.
